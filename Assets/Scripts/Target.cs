@@ -25,7 +25,7 @@ public class Target : MonoBehaviour
     void Start()
     {
         rigidbody = GetComponent<Rigidbody>();
-        gameManager = FindObjectOfType<GameManager>().GetComponent<GameManager>(); 
+        gameManager = FindObjectOfType<GameManager>(); 
 
         transform.position = RandomSpawnPosition();
         rigidbody.AddForce(RandomForce(), ForceMode.Impulse);
@@ -62,7 +62,7 @@ public class Target : MonoBehaviour
     {
         if (targetType  == TargetType.Good)
         {
-            gameManager.GameOver();
+            gameManager.UpdateLives(1);
         }
 
         Destroy(gameObject);
