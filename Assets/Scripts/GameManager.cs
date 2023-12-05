@@ -34,7 +34,10 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            ChangePause();
+        }
     }
 
     private IEnumerator SpawnTarget()
@@ -83,6 +86,20 @@ public class GameManager : MonoBehaviour
         livesText.text = "Lives: " + lives;
     }
 
-
+    private void ChangePause()
+    {
+        if (!isPaused)
+        {
+            isPaused = true;
+            pauseScreen.SetActive(true);
+            Time.timeScale = 0;
+        }
+        else
+        {
+            isPaused = false;
+            pauseScreen.SetActive(false);
+            Time.timeScale = 1;
+        }
+    }
 }
 
