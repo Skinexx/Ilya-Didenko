@@ -4,16 +4,18 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    private Vector3 movementDirection;
-    private Animator animator;
     private float turnSpeed = 20f;
     private Quaternion rotation = Quaternion.identity;
+    private Vector3 movementDirection;
+    private Animator animator;
     private Rigidbody rigidbody;
+    private AudioSource audioSource;
 
     void Start()
     {
         animator = GetComponent<Animator>();
         rigidbody = GetComponent<Rigidbody>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     
@@ -30,6 +32,18 @@ public class PlayerMovement : MonoBehaviour
         bool isWalking = hasHorizontalInput || hasVerticalInput;
 
         animator.SetBool("IsWalking", isWalking);
+
+        if (isWalking)
+        {
+            if (!audioSource.isPlaying)
+            {
+                audioSource.Play();
+            }
+        }
+        else
+        {
+            audioSource.Stop();
+        }
 
         Vector3 desiredForward = Vector3.RotateTowards(transform.forward, movementDirection, turnSpeed * Time.deltaTime, 0);
         rotation = Quaternion.LookRotation(desiredForward);
