@@ -56,4 +56,11 @@ public class PlayerMovement : MonoBehaviour
         rigidbody.MoveRotation(rotation);
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.TryGetComponent(out Key key))
+        {
+            Debug.Log("Мы возле ключа");
+        }
+    }
 }
