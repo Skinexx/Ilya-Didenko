@@ -490,7 +490,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fadeDuration: 1
-  player: {fileID: 81163712075330844}
   exitImageCanvasGroup: {fileID: 1439030331}
   caughtImageCanvasGroup: {fileID: 113055875}
   exitAudio: {fileID: 753376921}
@@ -6068,12 +6067,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 2133350679}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &81163712075330844 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4226595764310313469, guid: 7a2580609f3d83143a4198d7b996fe49,
-    type: 3}
-  m_PrefabInstance: {fileID: 8507485575148416220}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &81163712075330848 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7443672675501269641, guid: 7a2580609f3d83143a4198d7b996fe49,
@@ -6332,6 +6325,11 @@ PrefabInstance:
     - target: {fileID: 7443672675501269641, guid: 7a2580609f3d83143a4198d7b996fe49,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7588969771835208529, guid: 7a2580609f3d83143a4198d7b996fe49,
+        type: 3}
+      propertyPath: hasKey
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

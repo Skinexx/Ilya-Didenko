@@ -9,12 +9,7 @@ public class KeySpawner : MonoBehaviour
 
     private void Start()
     {
-        foreach (var point in spawnPositions)
-        {
-            Instantiate(key, point.position, Quaternion.identity);
-        }
-
-/*        int randomPosition = Random.Range(0, spawnPositions.Length);
-        Instantiate(key, spawnPositions[randomPosition].position, Quaternion.identity);*/
+        int randomPosition = Random.Range(0, spawnPositions.Length);
+        Instantiate(key, spawnPositions[randomPosition].position, Quaternion.identity);
     }
 }

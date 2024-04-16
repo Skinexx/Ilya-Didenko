@@ -10,6 +10,9 @@ public class PlayerMovement : MonoBehaviour
     private Animator animator;
     private Rigidbody rigidbody;
     private AudioSource audioSource;
+    private bool hasKey;
+
+    public bool HasKey => hasKey;
 
     void Start()
     {
@@ -47,7 +50,6 @@ public class PlayerMovement : MonoBehaviour
 
         Vector3 desiredForward = Vector3.RotateTowards(transform.forward, movementDirection, turnSpeed * Time.deltaTime, 0);
         rotation = Quaternion.LookRotation(desiredForward);
-
     }
 
     private void OnAnimatorMove()
@@ -56,11 +58,18 @@ public class PlayerMovement : MonoBehaviour
         rigidbody.MoveRotation(rotation);
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
         if (other.TryGetComponent(out Key key))
         {
             Debug.Log("Мы возле ключа");
+
+            if (!hasKey && Input.GetKeyDown(KeyCode.E))
+            {
+                hasKey = true;
+                Debug.Log("берем ключ");
+                Destroy(key.gameObject);              
+            }
         }
     }
 }

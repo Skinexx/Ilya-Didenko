@@ -6,7 +6,6 @@ using UnityEngine.SceneManagement;
 public class GameEnding : MonoBehaviour
 {
     public float fadeDuration = 1;
-    public GameObject player;
     public CanvasGroup exitImageCanvasGroup;
     public CanvasGroup caughtImageCanvasGroup;
     public AudioSource exitAudio;
@@ -25,11 +24,20 @@ public class GameEnding : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject == player)
-        {
-            isPlayerAtExit = true;
-        }       
+        if (other.TryGetComponent(out PlayerMovement player))
+        {             
+            if (player.HasKey)
+            {
+                isPlayerAtExit = true;
+            }
+            else
+            {
+                Debug.Log("Сначала найди ключ");
+            }          
+        }   
     }
+
+    
 
     private void Update()
     {
