@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Net.Http.Headers;
 using UnityEngine;
 
 /// <summary>
@@ -10,8 +11,21 @@ public class ResourcePile : Building
 {
     public ResourceItem Item;
 
-    public float ProductionSpeed = 0.5f;
-
+    private float productionSpeed = 0.5f;
+    public float ProductionSpeed
+    {
+        get { return productionSpeed; }
+        set
+        {
+            if (value < 0 )
+            {
+                Debug.LogError("you can't set a negative productionSpeed");
+            } else
+            {
+                productionSpeed = value;
+            }
+}
+    }
     private float m_CurrentProduction = 0.0f;
 
     private void Update()
@@ -26,13 +40,13 @@ public class ResourcePile : Building
         
         if (m_CurrentProduction < 1.0f)
         {
-            m_CurrentProduction += ProductionSpeed * Time.deltaTime;
+            m_CurrentProduction += productionSpeed * Time.deltaTime;
         }
     }
 
     public override string GetData()
     {
-        return $"Producing at the speed of {ProductionSpeed}/s";
+        return $"Producing at the speed of {productionSpeed}/s";
         
     }
     
